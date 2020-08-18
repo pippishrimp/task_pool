@@ -33,7 +33,9 @@ func Test_DefaultConfig(t *testing.T) {
 			return nil
 		}
 		task := &Task{Func: f}
-		pool.PushTask(task)
+		if err := pool.PushTask(task); err != nil {
+			t.Fatal(err)
+		}
 	}
 	wg.Wait()
 }
